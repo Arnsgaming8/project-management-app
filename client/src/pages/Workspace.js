@@ -80,7 +80,7 @@ function Workspace() {
   const deleteProject = async (projectId, e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!confirm('Delete this project?')) return;
+    if (!window.confirm('Delete this project?')) return;
     try {
       await projectsApi.delete(projectId);
       setProjects(projects.filter(p => p.id !== projectId));

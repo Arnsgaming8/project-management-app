@@ -14,6 +14,8 @@ const SocketContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 export const useSocket = () => useContext(SocketContext);
 
+const SOCKET_URL = 'https://server-production-3677.up.railway.app';
+
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +27,7 @@ function App() {
     
     if (token && savedUser) {
       setUser(JSON.parse(savedUser));
-      const newSocket = io('http://localhost:3001');
+      const newSocket = io(SOCKET_URL);
       setSocket(newSocket);
       newSocket.on('connect', () => console.log('Socket connected'));
     }
@@ -39,7 +41,7 @@ function App() {
     localStorage.setItem('user', JSON.stringify(data.user));
     setUser(data.user);
     
-    const newSocket = io('http://localhost:3001');
+    const newSocket = io(SOCKET_URL);
     setSocket(newSocket);
     
     return data;
@@ -51,7 +53,7 @@ function App() {
     localStorage.setItem('user', JSON.stringify(data.user));
     setUser(data.user);
     
-    const newSocket = io('http://localhost:3001');
+    const newSocket = io(SOCKET_URL);
     setSocket(newSocket);
     
     return data;
